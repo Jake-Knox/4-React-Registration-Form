@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './RegistrationForm.css';  // Import the CSS file
 
 const RegistrationForm = () => {
     // State variables for form fields
@@ -37,61 +38,62 @@ const RegistrationForm = () => {
     };
 
     return (
-        <div>
-            <div>
-                <h2>User Registration Form</h2>
-                {isSubmitted ? (
-                    <p>Registration successful! You can now log in.</p>
-                ) : (
-                    // onSubmit - errors shown to user when submitting/press enter
-                    <form onSubmit={handleSubmit}>
-                        {/* username */}
-                        <div>
-                            <label>Username:</label>
-                            <input
-                                type='text'
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                            />
-                            {errors.username && <p className="error">{errors.username}</p>}
-                        </div>
-                        {/* email */}
-                        <div>
-                            <label>Email:</label>
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            {errors.email && <p className="error">{errors.email}</p>}
-                        </div>
-                        {/* password */}
-                        <div>
-                            <label>Password:</label>
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            {errors.password && <p className="error">{errors.password}</p>}
-                        </div>
-                        {/* confirm password */}
-                        <div>
-                            <label>Confirm Password:</label>
-                            <input
-                                type="password"
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                            />
-                            {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
-                        </div>
+        <div className="registration-container">
+            <h2 className="form-title">User Registration Form</h2>
+            {isSubmitted ? (
+                <p className="success-message">Registration successful! You can now log in.</p>
+            ) : (
+                // onSubmit - errors shown to user when submitting/press enter
+                <form onSubmit={handleSubmit} className="form">
+                    {/* username */}
+                    <div className='form-group'>
+                        <label className='label'>Username:</label>
+                        <input
+                            type='text'
+                            className='input-field'
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        {errors.username && <p className="error">{errors.username}</p>}
+                    </div>
+                    {/* email */}
+                    <div className='form-group'>
+                        <label className='label'>Email:</label>
+                        <input
+                            type="email"
+                            className='input-field'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        {errors.email && <p className="error">{errors.email}</p>}
+                    </div>
+                    {/* password */}
+                    <div className='form-group'>
+                        <label className='label'>Password:</label>
+                        <input
+                            type="password"
+                            className='input-field'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        {errors.password && <p className="error">{errors.password}</p>}
+                    </div>
+                    {/* confirm password */}
+                    <div className='form-group'>
+                        <label className='label'>Confirm Password:</label>
+                        <input
+                            type="password"
+                            className='input-field'
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
+                        {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
+                    </div>
 
-                        {/* submit btn */}
-                        <button type="submit">Register</button>
-                    </form>
-                )}
-            </div>
-
+                    {/* submit btn */}
+                    <button type="submit" className='submit-button'>Register</button>
+                </form>
+            )}
         </div>
     )
 }
