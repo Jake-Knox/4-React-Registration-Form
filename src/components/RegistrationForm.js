@@ -19,6 +19,10 @@ const RegistrationForm = () => {
 
         // Simple form validation
         const validationErrors = {};
+        if (!username.trim()) validationErrors.username = 'Username is required';
+        if (!email.trim()) validationErrors.email = 'Email is required';
+        if (!password.trim()) validationErrors.password = 'Password is required';
+        if (password !== confirmPassword) validationErrors.confirmPassword = 'Passwords do not match';
 
         // If there are validation errors, set the errors state and prevent form submission
         if (Object.keys(validationErrors).length > 0) {
@@ -39,6 +43,7 @@ const RegistrationForm = () => {
                 {isSubmitted ? (
                     <p>Registration successful! You can now log in.</p>
                 ) : (
+                    // onSubmit - errors shown to user when submitting/press enter
                     <form onSubmit={handleSubmit}>
                         {/* username */}
                         <div>
@@ -48,22 +53,41 @@ const RegistrationForm = () => {
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                             />
-                            {errors.username && <p className='error'>{errors.username}</p>}
+                            {errors.username && <p className="error">{errors.username}</p>}
                         </div>
                         {/* email */}
-
-
-
+                        <div>
+                            <label>Email:</label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            {errors.email && <p className="error">{errors.email}</p>}
+                        </div>
                         {/* password */}
-
-
-
+                        <div>
+                            <label>Password:</label>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            {errors.password && <p className="error">{errors.password}</p>}
+                        </div>
                         {/* confirm password */}
-
+                        <div>
+                            <label>Confirm Password:</label>
+                            <input
+                                type="password"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
+                            {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
+                        </div>
 
                         {/* submit btn */}
-
-
+                        <button type="submit">Register</button>
                     </form>
                 )}
             </div>
