@@ -18,12 +18,13 @@ const RegistrationForm = () => {
         e.preventDefault();
 
         // Simple form validation
-
-
+        const validationErrors = {};
 
         // If there are validation errors, set the errors state and prevent form submission
-
-
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
 
         // If no validation errors, you can handle the form submission logic here
         // For now, let's just set the isSubmitted state to true and maybe add an alert.
@@ -33,7 +34,39 @@ const RegistrationForm = () => {
 
     return (
         <div>
-            <h2>Registion Form</h2>
+            <div>
+                <h2>User Registration Form</h2>
+                {isSubmitted ? (
+                    <p>Registration successful! You can now log in.</p>
+                ) : (
+                    <form onSubmit={handleSubmit}>
+                        {/* username */}
+                        <div>
+                            <label>Username:</label>
+                            <input
+                                type='text'
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                            {errors.username && <p className='error'>{errors.username}</p>}
+                        </div>
+                        {/* email */}
+
+
+
+                        {/* password */}
+
+
+
+                        {/* confirm password */}
+
+
+                        {/* submit btn */}
+
+
+                    </form>
+                )}
+            </div>
 
         </div>
     )
