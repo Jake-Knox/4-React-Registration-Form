@@ -18,11 +18,17 @@ const RegistrationForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // Additional conditions for strong password
+        const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
         // Simple form validation
         const validationErrors = {};
         if (!username.trim()) validationErrors.username = 'Username is required';
         if (!email.trim()) validationErrors.email = 'Email is required';
+        if (!passwordRegex.test(password)) validationErrors.password = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+        if (password.length < 8) validationErrors.password = 'Password must be at least 8 characters long';
         if (!password.trim()) validationErrors.password = 'Password is required';
+        if (!confirmPassword.trim()) validationErrors.confirmPassword = 'Password is required';
         if (password !== confirmPassword) validationErrors.confirmPassword = 'Passwords do not match';
 
         // If there are validation errors, set the errors state and prevent form submission
